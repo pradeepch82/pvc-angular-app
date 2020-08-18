@@ -1,7 +1,7 @@
 version: 0.1
 environment_variables:
     plaintext:
-        S3_BUCKET: "jakob.pennington.io"
+        S3_BUCKET: "pvc-angular-app"
 phases:
     install:
         commands:
@@ -14,8 +14,8 @@ phases:
             - ng build --prod
     post_build:
          commands:
-            - aws s3 rm s3://${S3_BUCKET} --recursive
-            - aws s3 cp dist/PenningtonIO/ s3://${S3_BUCKET} --recursive
+            - aws s3 rm pvc-angular-app --recursive
+            - aws s3 cp dist/* s3://${S3_BUCKET} --recursive
             - echo Build completed on `date`
 artifacts:
     files:
